@@ -1,0 +1,16 @@
+{
+  "name": "kiliman-reverse-proxy",
+  "version": "1.0.0",
+  "description": "Kiliman-reverse-proxy is a websocket reverse proxy server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http": "0.0.0",
+    "http-proxy": "^1.16.2",
+    "http-proxy-rules": "^1.1.0"
+  }
+}

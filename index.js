@@ -10,15 +10,6 @@ const config = require('./config/config.json');
 // Get the port from config
 const port = config.port;
 
-// Read all matching path from the database
-// ...
-const rules = {};
-
-// Set up proxy rules instance
-const proxyRules = new HttpProxyRules({
-  rules: rules
-});
-
 // Create reverse proxy instance
 const proxy = httpProxy.createProxy({ws: true});
 
@@ -31,6 +22,16 @@ const httpd = http.createServer(function(req, res) {
 
 // Listen to the HTTP UPGRADE event, so we can proxyfy the request to the web socket
 httpd.on('upgrade', function (req, res) {
+  // Read all matching path from the database
+  // E.g '/test_app': 'ws://localhost:8181',
+  // ...
+  const rules = {};
+
+  // Set up proxy rules instance
+  const proxyRules = new HttpProxyRules({
+    rules: rules
+  });
+
   let target = proxyRules.match(req);
   if (target) {
     // Proxyfy the request to the right websocket server
